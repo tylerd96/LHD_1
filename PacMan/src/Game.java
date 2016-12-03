@@ -1,19 +1,22 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import javax.swing.Timer;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,7 +26,12 @@ public class Game  extends JPanel{
 	ArrayList<Character> characters = new ArrayList<Character>();
 	ArrayList<BufferedImage> sprites;
 	Timer tmr;
+	public static ArrayList<MapBlock> walls = new ArrayList<MapBlock>();
+	private boolean load = true;
 	private JFrame window = new JFrame("Meme lord 5000");
+	static int size = 40;
+	static int cols = 16; // 32 squares /2
+	static int rows = 10; // 20 squares /2
 	
 	public Game() {
 		window.setBounds(100,100,800,800 );
@@ -43,11 +51,11 @@ public class Game  extends JPanel{
 			public void keyPressed(KeyEvent e) {
 				int kc = e.getKeyCode();
 				
-				switch(kc) {
-				case KeyEvent.VK_W: startMove(Direction.UP); 	repaint(); break;
-				case KeyEvent.VK_A: startMove(Direction.LEFT); 	repaint(); break;
-				case KeyEvent.VK_S: startMove(Direction.DOWN); 	repaint(); break;
-				case KeyEvent.VK_D: startMove(Direction.RIGHT); repaint(); break;
+				switch(kc) {	
+				case KeyEvent.VK_UP: startMove(Direction.UP); 		repaint(); break;
+				case KeyEvent.VK_LEFT: startMove(Direction.LEFT); 	repaint(); break;
+				case KeyEvent.VK_DOWN: startMove(Direction.DOWN); 	repaint(); break;
+				case KeyEvent.VK_RIGHT: startMove(Direction.RIGHT); repaint(); break;
 				}
 				
 			}
@@ -56,7 +64,7 @@ public class Game  extends JPanel{
 			public void keyReleased(KeyEvent e) {}
 			
 		});
-		tmr = new Timer(5, new ActionListener() {
+		tmr = new Timer(10, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for(Character c:characters) {
@@ -80,34 +88,47 @@ public class Game  extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		for(MapBlock mb : walls) {
+			mb.draw(g);
+		}
 		for(Character c : characters) {
 			c.move();
-			c.draw(g, c.getImage());
+			c.draw(g);
 		}
 		
 	}
 	public void loadLevel() {
 		loadImages();
+		loadWalls();
 //		for(int i = 0; i<2;i++) {
 //			characters.add(new Pacman(i*20, i*20, sprites[i]));
 //		}
-		System.out.println("hi");
-		characters.add(new Pacman(100,100,sprites.get(0)));
+		//walls.add(new MapBlock(0,0, false, sprites.get(0)));
+		//System.out.println("hi");
+//		int j = 0;
+//		for(int i = 0; i<sprites.size(); i++) {
+//			
+//			characters.add(new Pacman(j*20, 0, sprites.get(i)));
+//			j++;
+//		}
+		characters.add(new Pacman(100,100,sprites.get(30)));
 		//characters.add(new Pacman(0,0,sprites[(spriteRdr.PACMAN.row*(sprites.length/20)) + spriteRdr.PACMAN.col]));
 	}
 	public void loadImages() {
 		try {
-			BufferedImage bigImage = ImageIO.read(new File("spriteSheet.png"));
-			final int size = 20;
-			final int rows = 14;
-			final int cols = 40;
+			BufferedImage bigImage = ImageIO.read(new File("sprites.png"));
+//			final int size = 20;
+//			final int rows = 14;
+//			final int cols = 40;
 			sprites = new ArrayList<BufferedImage>(Collections.nCopies(rows*cols, null));
 			for(int i = 0; i<rows; i++) {
 				for(int j = 0; j<cols; j++) {
-					sprites.set((j*rows)+i, bigImage.getSubimage(j*size, i*size, size, size));
+					sprites.set((i*rows)+j, bigImage.getSubimage(j*size, i*size, size, size));
+					//System.out.println(j);
 				}
 				//System.out.println(i);
 			}
+			//sprites.set(400, bigImage.getSubimage(400, 0, size, size));
 			//sprites[0] = bigImage.getSubimage(0, 0, 20, 20);
 			
 		} catch (Exception e) {
@@ -116,6 +137,23 @@ public class Game  extends JPanel{
 			e.printStackTrace();
 		}
 		
+	}
+	public void loadWalls() {
+		// col22 row 13
+		System.out.println(sprites.size());
+		BufferedImage img;
+		try {
+			img = ImageIO.read(new File("tmpWall.png"));
+			walls.add(new MapBlock(200,200, false, img));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	public int getIndex(int row, int col) {
+		return (row*40)+col;
 	}
 	public static void main(String args[]) {
 		new Game();

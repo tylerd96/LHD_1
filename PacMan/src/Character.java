@@ -1,25 +1,32 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-public class Character {
+public class Character extends Rectangle{
 	
 	public static int sw = 800, sh = 800;
 	
-	private int x,y,dx,dy;
-	private final int size =20;
+	private int dx,dy;
+	private final static int size =40;
 	private BufferedImage image;
 	
 	public Character(int x, int y, BufferedImage image) {
-		setX(x);
-		setY(y);
+		super(x,y,size,size);
 		setImage(image);
 	}
-	
 	public void move() {
+		ArrayList<MapBlock> blocks = Game.walls;
 		x+= dx;
 		y+= dy;
+		for(MapBlock mb : blocks) {
+			if(this.intersects(mb) || mb.intersects(this)) {
+				x+=-dx;
+				y+=-dy;
+			}
+		}
 		if(dx<0) {
 			if(x <0-size) 
 				x = sw+size;
@@ -39,14 +46,14 @@ public class Character {
 			
 		}
 	}
-	public void draw(Graphics g, Image img) {
-		g.drawImage(img, x, y, size, size, null);
+	public void draw(Graphics g) {
+		g.drawImage(image, x, y, size, size, null);
 	}
 	
 	//================================================ Getters / Setters
-	public int getX() 					{return x;}
+	public double getX() 					{return x;}
 	public void setX(int x)				{this.x = x;}
-	public int getY() 					{return y;}
+	public double getY() 					{return y;}
 	public void setY(int y) 			{this.y = y;}
 	public int getDx() 					{return dx;}
 	public void setDx(int dx) 			{this.dx = dx;}
