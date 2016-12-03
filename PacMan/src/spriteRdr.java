@@ -7,21 +7,19 @@ public enum spriteRdr {
 	PINKY(6,5);
 	
 	final int size = 20;
-	int x1,y1,x2,y2;
+	int row, col;
 	
 	spriteRdr(int row, int col) {
-		setX1(col*size);
-		setY1(row*size);
-		setX2(col*size+size);
-		setY2(row*size+size);
+		setRow(row);
+		setCol(col);
 	}
 	
-	public int getX2() 			{return x2;}
-	public void setX2(int x2) 	{this.x2 = x2;}
-	public int getY2() 			{return y2;}
-	public void setY2(int y2) 	{this.y2 = y2;}
-	public int getX1() 			{return x1;}
-	public void setX1(int x) 	{this.x1 = x;}
-	public int getY1() 			{return y1;}
-	public void setY1(int y) 	{this.y1 = y;}
+	
+	public int getRow() {return row;}
+	public void setRow(int row) {this.row = row;}
+	public int getCol() {return col;}
+	public void setCol(int col) {this.col = col;}
+
+	
+	
 }

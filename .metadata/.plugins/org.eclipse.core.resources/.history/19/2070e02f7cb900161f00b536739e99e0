@@ -25,7 +25,7 @@ public class Game  extends JPanel{
 		super.paint(g);
 	}
 	public void loadLevel() {
-		characters.add(new Pacman(0,0,sprites[(spriteRdr.PACMAN.row*sprites.length) + spriteRdr.PACMAN.col]));
+		characters.add(new Pacman(0,0,Color.YELLOW, ));
 	}
 	public void loadImages() {
 		try {

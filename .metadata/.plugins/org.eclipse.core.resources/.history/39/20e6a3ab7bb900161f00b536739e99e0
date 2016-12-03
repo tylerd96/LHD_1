@@ -12,7 +12,6 @@ public class Game  extends JPanel{
 	
 	ArrayList<Character> characters = new ArrayList<Character>();
 	private JFrame window = new JFrame("Meme lord 5000");
-	BufferedImage[] sprites;
 	
 	
 	public Game() {
@@ -25,20 +24,15 @@ public class Game  extends JPanel{
 		super.paint(g);
 	}
 	public void loadLevel() {
-		characters.add(new Pacman(0,0,sprites[(spriteRdr.PACMAN.row*sprites.length) + spriteRdr.PACMAN.col]));
+		characters.add(new Pacman(0,0,Color.YELLOW, "THE DONG.jpg"));
 	}
 	public void loadImages() {
 		try {
 			BufferedImage bigImage = ImageIO.read(new File("pacsprites.png"));
-			final int size = 20;
+			final int size = 24;
 			final int rows = 16;
 			final int cols = 21;
-			sprites = new BufferedImage[rows*cols];
-			for(int i = 0; i<rows; i++) {
-				for(int j = 0; j<cols; j++) {
-					sprites[(i*cols)+j] = bigImage.getSubimage(j*size, i*size, size, size);
-				}
-			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

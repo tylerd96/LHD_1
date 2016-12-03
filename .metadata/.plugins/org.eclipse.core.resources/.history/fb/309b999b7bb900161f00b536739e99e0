@@ -1,6 +1,6 @@
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 
 public class Character {
 	
@@ -8,11 +8,13 @@ public class Character {
 	
 	private int x,y,dx,dy;
 	private final int size = 20;
-	private BufferedImage image;
+	private Color color;
+	private Image image;
 	
-	public Character(int x, int y, BufferedImage image) {
+	public Character(int x, int y, Color color, String image) {
 		setX(x);
 		setY(y);
+		setColor(color);
 		setImage(image);
 	}
 	
@@ -52,8 +54,10 @@ public class Character {
 	public void setDx(int dx) 			{this.dx = dx;}
 	public int getDy() 					{return dy;}
 	public void setDy(int dy) 			{this.dy = dy;}
-	public void setImage(BufferedImage image) {
-		this.image = image;
+	public Color getColor() 			{return color;}
+	public void setColor(Color color) 	{this.color = color;}
+	public void setImage(String imageFile) {
+		image = Toolkit.getDefaultToolkit().getImage("GameImages/" + imageFile);
 	}
 	
 	
