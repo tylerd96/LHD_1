@@ -4,10 +4,8 @@ import java.awt.Toolkit;
 
 public class Character {
 	
-	public static int sw, sh;
-	
 	private int x,y,dx,dy;
-	private final int size = 24;
+	private final int SIZE = 24;
 	private Color color;
 	private Image image;
 	
@@ -18,32 +16,7 @@ public class Character {
 		setImage(image);
 	}
 	
-	public void move() {
-		x+= dx;
-		y+= dy;
-		if(dx<0) {
-			if(x+size < 0) 
-				x = sw;
-			if(x-size>sw)
-				x += size;
-		} else if(dx>0) {
-			if(x>sw) 
-				x = 0-size;
-			if(x<0-size)
-				x = sw+size;
-			
-		}
-		
-		if(dy>0) {
-			if(y+size > sh) 
-				y = 0-size;
-			
-		} else if(dy < 0) {
-			if(y-size < 0) 
-				y = sh+size;
-			
-		}
-	}
+	
 	
 	//================================================ Getters / Setters
 	public int getX() 					{return x;}
