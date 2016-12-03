@@ -6,7 +6,7 @@ public enum spriteRdr {
 	CLYDE(11,5),
 	PINKY(6,5);
 	
-	final int size = 20;
+	final int size = 24;
 	int x1,y1,x2,y2;
 	
 	spriteRdr(int row, int col) {
