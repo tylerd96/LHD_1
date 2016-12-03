@@ -5,10 +5,10 @@ import java.awt.image.BufferedImage;
 
 public class Character {
 	
-	public static int sw, sh;
+	public static int sw = 800, sh = 800;
 	
 	private int x,y,dx,dy;
-	private final int size = 20;
+	private final int size =20;
 	private BufferedImage image;
 	
 	public Character(int x, int y, BufferedImage image) {
@@ -21,15 +21,11 @@ public class Character {
 		x+= dx;
 		y+= dy;
 		if(dx<0) {
-			if(x+size < 0) 
-				x = sw;
-			if(x-size>sw)
-				x += size;
+			if(x <0-size) 
+				x = sw+size;
 		} else if(dx>0) {
 			if(x>sw) 
-				x = 0-size;
-			if(x<0-size)
-				x = sw+size;
+				x=0-size;
 			
 		}
 		
@@ -38,13 +34,13 @@ public class Character {
 				y = 0-size;
 			
 		} else if(dy < 0) {
-			if(y-size < 0) 
+			if(y+size < 0) 
 				y = sh+size;
 			
 		}
 	}
 	public void draw(Graphics g, Image img) {
-		
+		g.drawImage(img, x, y, size, size, null);
 	}
 	
 	//================================================ Getters / Setters
@@ -59,6 +55,7 @@ public class Character {
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}
+	public BufferedImage getImage()	{return image;}
 	
 	
 }
