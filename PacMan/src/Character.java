@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
@@ -41,6 +42,9 @@ public class Character {
 				y = sh+size;
 			
 		}
+	}
+	public void draw(Graphics g, Image img) {
+		
 	}
 	
 	//================================================ Getters / Setters
