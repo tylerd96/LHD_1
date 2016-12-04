@@ -145,31 +145,24 @@ public class Game  extends JPanel{
 		// col22 row 13
 		System.out.println(sprites.size());
 		BufferedImage img;
-		BufferedImage norm;
 		grid = new int[20][20];
 		try {
 			img = ImageIO.read(new File("tmpWall.png"));
-			norm = ImageIO.read(new File("krumpe.jpg"));
 			Scanner in = new Scanner(new File("grid.txt"));
 			for(int i = 0; i<grid.length; i++) {
 				for(int j = 0; j<grid[i].length; j++) {
+					System.out.println(i*40 + ", " + j*40);
 					grid[i][j] = in.nextInt();
-					//System.out.println(grid[i][j]);
 					switch(grid[i][j]) {
 					case 0: walls.add(new MapBlock(j*40,i*40,false,img)); break;
 					case 1: break;
-					case 2: characters.add(new Pacman(j*40,i*40,sprites.get(30))); break;
-					case 3: walls.add(new MapBlock(j*40, i*40,false,norm)); break;
+					case 2: characters.add(new Pacman(i*40,j*40,sprites.get(30))); break;
 					}
 				}
-				for(int j = 0; j<20;j++) {
-					System.out.print(grid[i][j]);
-				}
-				System.out.println();
 			}
 			
-//			walls.add(new MapBlock(200,200, false, img));
-//			walls.add(new MapBlock(240,200,false, img));
+			walls.add(new MapBlock(200,200, false, img));
+			walls.add(new MapBlock(240,200,false, img));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

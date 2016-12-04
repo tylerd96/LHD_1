@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;PacMan/untitled text 2.txt&apos; to &apos;gird.txt&apos;" description="Rename resource &apos;untitled text 2.txt&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="untitled text 2.txt" name="gird.txt" stamp="1480808773349" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;PacMan/gird.txt&apos; to &apos;grid.txt&apos;" description="Rename resource &apos;gird.txt&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="gird.txt" name="grid.txt" stamp="1480808782610" updateReferences="true"/>
+</session>

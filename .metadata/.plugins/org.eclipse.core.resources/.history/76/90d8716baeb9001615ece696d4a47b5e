@@ -22,7 +22,7 @@ public class Character extends Rectangle{
 		x+= dx;
 		y+= dy;
 		for(MapBlock mb : blocks) {
-			if(this.intersects(mb) && !mb.isMoveable()) {
+			if(this.intersects(mb) || mb.intersects(this)) {
 				x+=-dx;
 				y+=-dy;
 			}

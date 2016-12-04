@@ -145,11 +145,9 @@ public class Game  extends JPanel{
 		// col22 row 13
 		System.out.println(sprites.size());
 		BufferedImage img;
-		BufferedImage norm;
 		grid = new int[20][20];
 		try {
 			img = ImageIO.read(new File("tmpWall.png"));
-			norm = ImageIO.read(new File("krumpe.jpg"));
 			Scanner in = new Scanner(new File("grid.txt"));
 			for(int i = 0; i<grid.length; i++) {
 				for(int j = 0; j<grid[i].length; j++) {
@@ -159,7 +157,6 @@ public class Game  extends JPanel{
 					case 0: walls.add(new MapBlock(j*40,i*40,false,img)); break;
 					case 1: break;
 					case 2: characters.add(new Pacman(j*40,i*40,sprites.get(30))); break;
-					case 3: walls.add(new MapBlock(j*40, i*40,false,norm)); break;
 					}
 				}
 				for(int j = 0; j<20;j++) {
