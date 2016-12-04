@@ -25,11 +25,10 @@ import javax.swing.JPanel;
 
 public class Game  extends JPanel{
 	
-	protected static ArrayList<Character> characters = new ArrayList<Character>();
+	ArrayList<Character> characters = new ArrayList<Character>();
 	ArrayList<BufferedImage> sprites;
 	Timer tmr;
-	protected static boolean gameover = false;
-	protected static ArrayList<MapBlock> walls = new ArrayList<MapBlock>();
+	public static ArrayList<MapBlock> walls = new ArrayList<MapBlock>();
 	private boolean load = true;
 	private JFrame window = new JFrame("Meme lord 5000");
 	private int[][] grid;
@@ -92,10 +91,6 @@ public class Game  extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		if(gameover) {
-			System.exit(ABORT);
-			throw new IllegalArgumentException();
-		}
 		for(MapBlock mb : walls) {
 			mb.draw(g);
 		}

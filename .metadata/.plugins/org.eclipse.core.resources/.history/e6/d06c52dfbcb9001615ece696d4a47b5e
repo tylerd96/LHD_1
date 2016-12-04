@@ -19,18 +19,18 @@ public class Character extends Rectangle{
 	}
 	public void move() {
 		ArrayList<MapBlock> blocks = Game.walls;
-//		double num =  Math.random();
-//		boolean X; 
-//		if(num>.5)
-//			X = true;
-//		else
-//			X = false;
-//		num = (Math.random()*2)-1;
-//		if(X) {
-//			dx = (int)num;
-//		} else {
-//			dy = (int)num;
-//		}
+		double num =  Math.random();
+		boolean X; 
+		if(num>.5)
+			X = true;
+		else
+			X = false;
+		num = (Math.random()*2)-1;
+		if(X) {
+			dx = (int)num;
+		} else {
+			dy = (int)num;
+		}
 		x+= dx;
 		y+= dy;
 		for(MapBlock mb : blocks) {

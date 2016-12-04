@@ -28,7 +28,7 @@ public class Game  extends JPanel{
 	protected static ArrayList<Character> characters = new ArrayList<Character>();
 	ArrayList<BufferedImage> sprites;
 	Timer tmr;
-	protected static boolean gameover = false;
+	protected boolean gameover = false;
 	protected static ArrayList<MapBlock> walls = new ArrayList<MapBlock>();
 	private boolean load = true;
 	private JFrame window = new JFrame("Meme lord 5000");
@@ -93,7 +93,6 @@ public class Game  extends JPanel{
 	public void paint(Graphics g) {
 		super.paint(g);
 		if(gameover) {
-			System.exit(ABORT);
 			throw new IllegalArgumentException();
 		}
 		for(MapBlock mb : walls) {

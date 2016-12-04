@@ -26,7 +26,7 @@ public class Ghost extends Character {
 		for(Character c : characters) {
 			if(c != this) {
 				if(this.intersects(c) && c instanceof Pacman) {
-					Game.gameover = true;
+					
 				}
 			}
 		}

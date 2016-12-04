@@ -14,20 +14,12 @@ public class Ghost extends Character {
 	@Override
 	public void move() {
 		ArrayList<MapBlock> blocks = Game.walls;
-		ArrayList<Character> characters = Game.characters;
 		x+= dx;
 		y+= dy;
 		for(MapBlock mb : blocks) {
 			if(this.intersects(mb) && !mb.isMoveable()) {
 				x+=-dx;
 				y+=-dy;
-			}
-		}
-		for(Character c : characters) {
-			if(c != this) {
-				if(this.intersects(c) && c instanceof Pacman) {
-					Game.gameover = true;
-				}
 			}
 		}
 		if(dx<0) {
